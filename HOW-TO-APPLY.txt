@@ -1,0 +1,27 @@
+THREADBACK DATE + AI FLOW HOTFIX
+
+Apply these files into the ROOT of your existing Threadback project (the folder that contains package.json), preserving the folder paths. Replace existing files when prompted:
+- src/components/threadback-app.tsx
+- src/components/landing.tsx
+- src/lib/engine.ts
+- src/app/globals.css
+- tests/parser.test.ts
+
+What this changes:
+1. Adds a DD/MM/YYYY vs MM/DD/YYYY selector when the export dates are ambiguous and reparses from the retained in-memory export text.
+2. Initializes From/To using actual minimum/maximum timestamps instead of assuming file order is chronological.
+3. Shows the live number of messages selected by current filters.
+4. Makes date-only and since-time filtering use consistent timezone-naive timestamps, matching WhatsApp export wall-clock values.
+5. Stores the exact filtered selection before the model-download confirmation so the model analyzes the chosen messages, not stale React state.
+6. Retries without optional WebLLM JSON response_format if the model/runtime explicitly rejects that option; the JSON-only prompt and schema validation remain in place.
+7. Adds a parser test for explicit date-order override.
+8. Replaces unsupported CircleHelp with HelpCircle and removes duplicate icon imports.
+
+After copying:
+  npm test
+  npm run typecheck
+  npm run dev
+
+Then upload the export again. If dates are ambiguous, choose the format that matches the source export and verify the message-count preview is nonzero. Click Analyze chat privately, then click Download & analyze in the first-run model dialog and wait for the real model download. If it fails, capture the error displayed in the app and the first red browser-console error.
+
+Note: this hotfix passed TypeScript transpilation/syntax checks in the packaging environment, but a full npm test/build was not run because dependency installation timed out here. Actual WebGPU/model inference still requires testing in your Chrome browser.

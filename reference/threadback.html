@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Threadback — What Did I Miss?</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0C0C0C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:Kanit,system-ui,sans-serif;color:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.g{background:linear-gradient(180deg,#fff 30%,#5c5c5c);-webkit-background-clip:text;background-clip:text;color:transparent;margin:0;font-weight:500;line-height:1}
+.pill{display:inline-flex;align-items:center;min-height:44px;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#6366f1,#ec4899);color:#fff;font-weight:500}
+.ghost{display:inline-flex;align-items:center;min-height:44px;padding:10px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.35);font-size:14px;color:#fff}
+.light .ghost{border-color:rgba(12,12,12,.4);color:#0C0C0C}
+.wrap{padding:0 clamp(16px,4vw,48px)}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:20px clamp(16px,4vw,48px)}
+nav div{display:flex;gap:clamp(12px,2vw,32px);flex-wrap:wrap;font-size:14px}
+header{min-height:min(100vh,860px);display:flex;flex-direction:column;justify-content:space-between;position:relative;padding-bottom:40px}
+.hero-h{font-size:clamp(56px,16vw,230px);text-align:center;letter-spacing:-.02em;margin-top:24px}
+.vis{position:absolute;left:50%;top:36%;transform:translateX(-50%);width:clamp(240px,34vw,420px);animation:fl 6s ease-in-out infinite alternate}
+.vis>div{display:flex;flex-direction:column;gap:8px;transform:perspective(700px) rotateX(12deg) rotateY(-10deg)}
+@keyframes fl{to{transform:translate(-50%,-12px)}}
+.b{max-width:82%;padding:7px 11px;border-radius:12px;background:#262626;color:#ddd;font-size:13px}
+.b.me{align-self:flex-end;background:#3b3f8f}
+.hi{outline:1px solid #ec4899;background:#ec489922}
+.card{background:#1d1d1d;border-radius:10px;padding:9px 12px;border:1px solid #333;font-size:13px}
+.tag{font-size:11px;color:#a5b4fc}
+.mq{overflow:hidden;padding:24px 0;display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:16px;width:max-content}
+.r1{animation:m1 60s linear infinite alternate}.r2{animation:m2 60s linear infinite alternate-reverse}
+@keyframes m1{to{transform:translateX(calc(-4796px + 100vw))}}
+@keyframes m2{to{transform:translateX(calc(-4360px + 100vw))}}
+.t{flex:none;width:420px;height:270px;border-radius:16px;background:#151515;border:1px solid #2b2b2b;padding:18px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.bd{position:absolute;top:10px;right:10px;font-size:10px;padding:3px 8px;border-radius:999px;background:#ffffff1c;color:#bbb}
+.about{position:relative;text-align:center;padding:clamp(80px,12vw,180px) clamp(16px,4vw,48px)}
+.about p{max-width:760px;margin:32px auto;font-size:clamp(18px,2.2vw,28px);line-height:1.4;color:#ddd}
+.ic{position:absolute;width:clamp(64px,10vw,140px);height:auto;filter:drop-shadow(0 20px 24px #6366f155)}
+.sec{border-radius:32px 32px 0 0;padding:clamp(48px,8vw,96px) 0}
+.light{background:#fff;color:#0C0C0C}
+.sec h2.d{font-size:clamp(40px,7vw,90px);margin:0 0 32px;font-weight:500}
+.feat{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:28px 0;border-top:1px solid #0C0C0C22}
+.feat div{max-width:720px}.feat b{font-size:clamp(20px,2.4vw,28px)}.feat p{margin:6px 0 0;color:#444}
+.step{position:sticky;top:24px;background:#141414;border:1px solid #2b2b2b;border-radius:24px;padding:clamp(20px,3vw,40px);margin-bottom:32px}
+.sh{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.sh .n{font-size:clamp(64px,10vw,140px)}.sh h3{font-size:clamp(24px,3.5vw,44px);margin:4px 0;font-weight:500}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:20px}
+.mini .t{width:auto;height:190px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.g3 b{font-size:22px}.g3 p{color:#444}
+.cta{text-align:center;padding:clamp(64px,10vw,140px) clamp(16px,4vw,48px)}
+footer{border-top:1px solid #2b2b2b;padding:32px clamp(16px,4vw,48px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:#aaa}
+@media(max-width:768px){.vis{top:30%}.ic{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.vis,.r1,.r2{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#818cf8"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs></svg>
+
+<nav><a href="#top" style="font-weight:600;letter-spacing:.1em">THREADBACK</a><div><a href="#how">How it works</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="/app">Try it</a></div></nav>
+
+<header id="top" class="wrap">
+<h1 class="g hero-h">THREADBACK</h1>
+<div class="vis"><div>
+<div class="b" style="opacity:.55">anyone seen the venue email??</div>
+<div class="b me" style="opacity:.7">lol which one</div>
+<div class="b" style="opacity:.85">ok so Friday → Saturday now?</div>
+<div class="card" style="background:#fff;color:#0C0C0C;border:0;box-shadow:0 30px 60px #ec489944"><div class="tag" style="color:#6366f1">Briefing · Sample data</div><b>Needs you: confirm Saturday venue</b><div style="font-size:12px;color:#555">Deadline Thu · 3 source messages</div></div>
+</div></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+<div><p style="margin:0;font-size:clamp(16px,1.6vw,20px)">Catch up on what matters. Not every message.</p><p style="margin:4px 0 0;font-size:13px;color:#999">Your chat stays on your device.</p></div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end"><a class="ghost" href="#how">Explore how it works</a><a class="pill" href="/app">Analyze your chat</a></div><span style="font-size:12px;color:#888">Best on desktop Chrome or Edge.</span></div>
+</div>
+</header>
+
+<section class="mq" aria-label="Sample data tiles">
+<div class="row r1">
+<div class="t"><span class="bd">Sample data</span><div class="b">where r we meeting</div><div class="b me">??</div><div class="b">pic of the cake lol</div><div class="b">@Asha sorry see above</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Mention highlight</div><div class="b">Team lunch Fri?</div><div class="b hi">@Asha can you book the table?</div><div class="b me">on it</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Hinglish</div><div class="b">kal tak form bhej dena, warna late ho jayega</div><div class="b me">haan, shaam tak bhejti hoon</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">12:04 ok</div><div class="b">12:05 changed to 7pm</div><div class="b">12:09 no wait 8pm</div><div class="b me">12:10 👍</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">‎&lt;Media omitted&gt;</div><div class="b">Who has the invoice?</div><div class="b">Need it by Thursday</div><div class="b">‎&lt;Media omitted&gt;</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Unread</div><div class="g" style="font-size:64px">1,000+</div><div class="b me">…</div><div class="b">scroll scroll scroll</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">so about the thing from last week, I think we should maybe consider possibly moving it but also not sure</div><div class="b me">ok</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">Reply to: “can someone send the form”</div><div class="b">that was 3 days ago btw</div><div class="b me">which form??</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">😂😂😂</div><div class="b">🔥</div><div class="b">🎤 Voice message 0:42</div><div class="b me">👍</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="b">Forwarded: Fri 7pm at Café Nine</div><div class="b">Forwarded: Fri 7pm at Café Nine</div><div class="b me">seen this 3 times</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Side conversation</div><div class="b">Meera: lol that meme</div><div class="b">Ravi: unrelated but who's driving</div><div class="b me">I can't read all this</div></div>
+</div>
+<div class="row r2">
+<div class="t"><span class="bd">Sample data</span><div class="tag">Action item · explicit</div><div class="card"><b>Book the table</b><br>Asked of you by Ravi · Fri</div><div class="card" style="opacity:.6">Send invoice · inferred</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Deadline timeline</div><div class="card">Wed · Form due</div><div class="card">Thu · Invoice</div><div class="card">Sat · Event</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Decision change</div><div class="card" style="opacity:.6">Before: Friday 7pm</div><div class="card">Latest: Saturday 8pm<br><span style="font-size:11px;color:#999">Unclear: venue not confirmed</span></div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Evidence inspector</div><div class="card">“changed to 8pm” — Meera, 12:09</div><div class="card" style="color:#999">Linked to 2 messages</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Ask your chat</div><div class="b me">When is the event?</div><div class="card">Saturday 8pm [1][2]. Venue is not stated.</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Triage</div><div class="card">Reply needed · 3</div><div class="card">Deadline soon · 2</div><div class="card">FYI · 14</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Privacy panel</div><div class="g" style="font-size:56px">0 bytes</div><div class="card">of chat sent</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Suggested reply · drafted locally</div><div class="card">“Yes, I'll confirm the venue by Thursday.”</div><div class="card" style="color:#999">Replying to Ravi, 12:09</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Topic summary</div><div class="card"><b>Event plan</b><br>Moved to Saturday 8pm</div><div class="card"><b>Invoice</b><br>Due Thursday</div></div>
+<div class="t"><span class="bd">Sample data</span><div class="tag">Stats strip</div><div style="display:flex;gap:8px"><div class="card">4<br>tasks</div><div class="card">2<br>deadlines</div><div class="card">1<br>change</div></div></div>
+</div>
+</section>
+
+<section class="about">
+<svg class="ic" style="top:8%;left:6%;transform:rotate(-10deg)" viewBox="0 0 120 120" aria-hidden="true"><rect x="8" y="8" width="104" height="104" rx="28" fill="url(#gr)"/><path d="M34 40h52a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H60L44 92V78h-10a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8z" fill="#fff" opacity=".95"/></svg>
+<svg class="ic" style="bottom:8%;left:8%;transform:rotate(8deg)" viewBox="0 0 120 120" aria-hidden="true"><rect x="8" y="8" width="104" height="104" rx="28" fill="url(#gr)"/><path d="M60 24l28 10v22c0 18-12 32-28 40-16-8-28-22-28-40V34z" fill="#fff" opacity=".95"/><rect x="48" y="52" width="24" height="20" rx="4" fill="#6366f1"/><path d="M53 52v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#6366f1" stroke-width="4"/></svg>
+<svg class="ic" style="top:8%;right:6%;transform:rotate(10deg)" viewBox="0 0 120 120" aria-hidden="true"><rect x="8" y="8" width="104" height="104" rx="28" fill="url(#gr)"/><g fill="#fff" opacity=".95"><rect x="30" y="34" width="14" height="14" rx="3"/><rect x="52" y="38" width="38" height="6" rx="3"/><rect x="30" y="58" width="14" height="14" rx="3"/><rect x="52" y="62" width="38" height="6" rx="3"/><rect x="30" y="82" width="14" height="14" rx="3"/><rect x="52" y="86" width="38" height="6" rx="3"/></g></svg>
+<svg class="ic" style="bottom:8%;right:8%;transform:rotate(-8deg)" viewBox="0 0 120 120" aria-hidden="true"><rect x="8" y="8" width="104" height="104" rx="28" fill="url(#gr)"/><path d="M60 26a22 22 0 0 1 22 22c0 18-22 44-22 44S38 66 38 48a22 22 0 0 1 22-22z" fill="#fff" opacity=".95"/><circle cx="60" cy="48" r="9" fill="#6366f1"/></svg>
+<h2 class="g" style="font-size:clamp(40px,8vw,110px)">Why Threadback</h2>
+<p>You come back to a group chat with a thousand unread messages. Threadback reads them on your device, finds what needs your attention, tracks deadlines and changed plans, and shows you the exact messages behind every answer. No account. No upload. No guesswork you can't verify.</p>
+<a class="pill" href="/app">Analyze your chat</a>
+</section>
+
+<section id="features" class="sec light"><div class="wrap">
+<h2 class="d">Features</h2>
+<div class="feat"><div><b>01 Catch-up Briefing</b><p>Choose 'since I last read' or any date range and get what needs your attention first, then deadlines, decisions and a clear summary.</p></div><a class="ghost" href="/app?feature=briefing">Try it</a></div>
+<div class="feat"><div><b>02 Personal Priorities</b><p>Mentions of you, requests aimed at you and commitments you made, with explicit tasks clearly separated from inferred ones.</p></div><a class="ghost" href="/app?feature=priorities">Try it</a></div>
+<div class="feat"><div><b>03 Decisions and Changes</b><p>See the earlier plan next to the latest supported plan, with timestamps, sources and a flag where the chat is unclear.</p></div><a class="ghost" href="/app?feature=decisions">Try it</a></div>
+<div class="feat"><div><b>04 Ask Your Chat</b><p>Ask in plain language. Answers come only from your chat, cite the exact messages, and say so when there isn't enough evidence.</p></div><a class="ghost" href="/app?feature=ask">Try it</a></div>
+<div class="feat"><div><b>05 Suggested Replies and Triage</b><p>Sort messages into Reply needed, Deadline soon and FYI, and get draft replies generated locally.</p></div><a class="ghost" href="/app?feature=triage">Try it</a></div>
+</div></section>
+
+<section id="how" class="sec" style="background:var(--bg);margin-top:-32px;position:relative"><div class="wrap">
+<h2 class="g" style="font-size:clamp(40px,8vw,110px);margin-bottom:40px">How it works</h2>
+<div class="step"><div class="sh"><div><div class="g n">01</div><div class="tag">Step one</div><h3>Drop your export</h3></div><a class="ghost" href="/app">Import a chat</a></div>
+<div class="mini"><div class="t"><span class="bd">Sample data</span><div class="tag">File drop zone</div><div class="card" style="border-style:dashed;text-align:center;padding:36px 0">Drop _chat.txt or .zip</div></div><div class="t"><span class="bd">Sample data</span><div class="tag">Which one is you?</div><div class="card">Asha</div><div class="card">Ravi</div><div class="card">Meera</div></div><div class="t"><span class="bd">Sample data</span><div class="tag">Date range</div><div class="card">Since I last read</div><div class="card" style="opacity:.6">1 Oct – 8 Oct</div></div></div></div>
+<div class="step"><div class="sh"><div><div class="g n">02</div><div class="tag">Step two</div><h3>Analyzed on your device</h3></div><a class="ghost" href="#privacy">See privacy</a></div>
+<div class="mini"><div class="t"><span class="bd">Sample data</span><div class="tag">Model download</div><div class="card">Model files · downloading</div><div style="height:8px;border-radius:4px;background:#333"><div style="width:60%;height:8px;border-radius:4px;background:#6366f1"></div></div></div><div class="t"><span class="bd">Sample data</span><div class="tag">Analysis stages</div><div class="card">Reading messages</div><div class="card">Finding tasks</div><div class="card" style="opacity:.5">Linking sources</div></div><div class="t"><span class="bd">Sample data</span><div class="tag">WebGPU check</div><div class="card">WebGPU available in this browser</div></div></div></div>
+<div class="step"><div class="sh"><div><div class="g n">03</div><div class="tag">Step three</div><h3>A briefing you can verify</h3></div><a class="ghost" href="/app?demo=1">Try the demo</a></div>
+<div class="mini"><div class="t"><span class="bd">Sample data</span><div class="tag">Briefing card</div><div class="card"><b>Needs you</b><br>Confirm Saturday venue</div><div class="card">Deadline · Thu</div></div><div class="t"><span class="bd">Sample data</span><div class="tag">Evidence inspector</div><div class="card">“changed to 8pm” — Meera, 12:09</div></div><div class="t"><span class="bd">Sample data</span><div class="tag">Ask your chat</div><div class="card">Saturday 8pm [1][2]. Not enough evidence for the venue.</div></div></div></div>
+</div></section>
+
+<section id="privacy" class="sec light" style="margin-top:-32px;position:relative"><div class="wrap">
+<h2 class="d">Private by design</h2>
+<div class="g3">
+<div><b>Stays on your device</b><p>Your chat, your questions and your summaries. None of it is uploaded.</p></div>
+<div><b>What we download</b><p>Only the AI model files, cached by your browser. They never contain your chat.</p></div>
+<div><b>Honest limits</b><p>Needs desktop Chrome or Edge with WebGPU. The first run downloads the model. AI can make mistakes, so check the linked source messages.</p></div>
+</div>
+<p style="margin-top:24px;font-size:14px;color:#555">Verify it yourself: open your browser's network tab.</p>
+<div id="limitations" style="margin-top:48px;padding-top:24px;border-top:1px solid #0C0C0C22"><b style="font-size:22px">Limitations</b><p style="color:#444;max-width:760px">Works best on desktop Chrome or Edge. Summaries may miss or misread things, so always check sources. Threadback is not affiliated with WhatsApp.</p></div>
+</div></section>
+
+<section class="cta">
+<h2 class="g" style="font-size:clamp(44px,10vw,150px)">What did you miss?</h2>
+<div style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="pill" href="/app">Analyze your chat</a><a class="ghost" href="/app?demo=1">Try with sample chat</a></div>
+</section>
+
+<footer>
+<div><b style="color:#fff;letter-spacing:.1em">THREADBACK</b><p style="margin:8px 0 0">Built for the 'What Did I Miss?' challenge. Your chat never leaves your device.</p></div>
+<div style="display:flex;gap:20px"><a href="#how">How it works</a><a href="#features">Features</a><a href="#privacy">Privacy</a></div>
+</footer>
+</body>
+</html>

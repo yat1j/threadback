@@ -1,0 +1,35 @@
+# Dependencies / build output
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local model/cache artifacts (never commit model weights)
+*.wasm
+*.bin
+*.safetensors
+*.gguf
+*.model
+mlc-llm/
+model-cache/
+
+# Personal WhatsApp exports and derived private data
+*WhatsApp*Chat*.txt
+*_chat.txt
+*chat-export*.txt
+*whatsapp-export*.zip
+private-chat-exports/
+local-analysis/

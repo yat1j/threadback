@@ -1,0 +1,24 @@
+THREADBACK DATE FILTER + STUCK AI LOADING FIX
+
+1. Stop the dev server (Ctrl+C in its terminal).
+2. Open the INNER project folder that contains package.json.
+3. Extract this ZIP into that folder and allow replacement of files.
+   It contains only these paths to merge into your project:
+   - src/components/threadback-app.tsx
+   - src/lib/date-range.ts (new)
+   - src/app/globals.css
+   - src/lib/engine.ts
+   - tests/date-range.test.ts (new)
+4. Run these one at a time in PowerShell from that same project folder:
+   npm test
+   npm run typecheck
+   npm run dev
+5. Re-upload the WhatsApp export. Check the detected conversation span and
+   select the correct DD/MM or MM/DD date interpretation. Watch the live
+   “messages match current selection” count change as you edit dates.
+6. First AI model download may take several minutes. If model initialization
+   stops reporting progress for 3 minutes, this patch stops it and shows an
+   error instead of spinning forever. This is not a guarantee the model will
+   work on every GPU/browser; verify in desktop Chrome with WebGPU enabled.
+
+Do not replace package.json or lockfiles with this patch; merge the listed files.
